@@ -13,6 +13,14 @@ A desktop café ordering application developed in Java using JavaFX and Maven. T
 - Export all placed orders to a text file
 - Dynamic images for selected donuts and coffee sizes
 
+## Screenshots
+
+<p align="center">
+  <img src="donut.png" width="30%" alt="Donut Ordering">
+  <img src="coffee.png" width="30%" alt="Coffee Ordering">
+  <img src="sandwich.png" width="30%" alt="Sandwich Ordering">
+</p>
+
 ## Technologies
 
 - Java 21
