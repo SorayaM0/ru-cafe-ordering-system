@@ -2,14 +2,14 @@ package controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
-import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
@@ -26,7 +26,10 @@ public class CoffeeController {
     private ComboBox<CupSize> sizeCombo;
 
     @FXML
-    private ListView<AddIn> addInsList;
+    private MenuButton addInsMenu;
+
+    @FXML
+    private Label selectedAddInsLabel;
 
     @FXML
     private Spinner<Integer> qtySpinner;
@@ -37,21 +40,17 @@ public class CoffeeController {
     @FXML
     private ImageView coffeeImage;
 
+    private final ArrayList<AddIn> selectedAddIns = new ArrayList<>();
+
     @FXML
     public void initialize() {
         sizeCombo.getItems().addAll(CupSize.values());
 
-        addInsList.getItems().addAll(AddIn.values());
-        addInsList.getSelectionModel()
-                  .setSelectionMode(SelectionMode.MULTIPLE);
-
         qtySpinner.setValueFactory(
-            new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                1,
-                99,
-                1
-            )
+            new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 1)
         );
+
+        createAddInMenuItems();
 
         sizeCombo.valueProperty().addListener(
             (observable, oldValue, newValue) -> {
@@ -60,16 +59,49 @@ public class CoffeeController {
             }
         );
 
-        addInsList.getSelectionModel()
-                  .getSelectedItems()
-                  .addListener(
-                      (ListChangeListener<? super AddIn>) change ->
-                          updatePrice()
-                  );
-
         qtySpinner.valueProperty().addListener(
             (observable, oldValue, newValue) -> updatePrice()
         );
+    }
+
+    private void createAddInMenuItems() {
+        addInsMenu.getItems().clear();
+
+        for (AddIn addIn : AddIn.values()) {
+            CheckMenuItem item = new CheckMenuItem(addIn.toString());
+
+            item.selectedProperty().addListener(
+                (observable, wasSelected, isSelected) -> {
+                    if (isSelected) {
+                        if (!selectedAddIns.contains(addIn)) {
+                            selectedAddIns.add(addIn);
+                        }
+                    } else {
+                        selectedAddIns.remove(addIn);
+                    }
+
+                    updateSelectedAddInsText();
+                    updatePrice();
+                }
+            );
+
+            addInsMenu.getItems().add(item);
+        }
+    }
+
+    private void updateSelectedAddInsText() {
+        if (selectedAddIns.isEmpty()) {
+            selectedAddInsLabel.setText("No add-ins selected");
+            addInsMenu.setText("Choose add-ins");
+            return;
+        }
+
+        String selectedText = selectedAddIns.stream()
+            .map(AddIn::toString)
+            .collect(Collectors.joining(", "));
+
+        selectedAddInsLabel.setText(selectedText);
+        addInsMenu.setText(selectedAddIns.size() + " selected");
     }
 
     private void updateCoffeeImage(CupSize size) {
@@ -89,9 +121,7 @@ public class CoffeeController {
         URL imageUrl = getClass().getResource(imagePath);
 
         if (imageUrl == null) {
-            System.err.println(
-                "Coffee image not found: " + imagePath
-            );
+            System.err.println("Coffee image not found: " + imagePath);
             coffeeImage.setImage(null);
             return;
         }
@@ -109,15 +139,11 @@ public class CoffeeController {
             return;
         }
 
-        ArrayList<AddIn> addIns = new ArrayList<>(
-            addInsList.getSelectionModel().getSelectedItems()
-        );
-
         int quantity = qtySpinner.getValue();
 
         Coffee coffee = new Coffee(
             size,
-            addIns,
+            new ArrayList<>(selectedAddIns),
             quantity
         );
 
@@ -133,27 +159,23 @@ public class CoffeeController {
         if (size == null) {
             new Alert(
                 Alert.AlertType.WARNING,
-                "Choose a size."
+                "Choose a cup size."
             ).showAndWait();
 
             return;
         }
 
-        ArrayList<AddIn> addIns = new ArrayList<>(
-            addInsList.getSelectionModel().getSelectedItems()
-        );
-
         int quantity = qtySpinner.getValue();
 
         OrderManager.getInstance()
-                    .getCurrentOrder()
-                    .addItem(
-                        new Coffee(
-                            size,
-                            addIns,
-                            quantity
-                        )
-                    );
+            .getCurrentOrder()
+            .addItem(
+                new Coffee(
+                    size,
+                    new ArrayList<>(selectedAddIns),
+                    quantity
+                )
+            );
 
         new Alert(
             Alert.AlertType.INFORMATION,

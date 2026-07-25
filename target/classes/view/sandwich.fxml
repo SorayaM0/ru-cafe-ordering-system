@@ -4,40 +4,64 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10"
-      xmlns="http://javafx.com/javafx/22.0.2"
+<VBox spacing="16"
+      xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="controller.SandwichController"
       stylesheets="@/css/app.css">
 
     <padding>
-        <Insets top="15" right="15" bottom="15" left="15"/>
+        <Insets top="20"
+                right="20"
+                bottom="20"
+                left="20"/>
     </padding>
 
-    <HBox spacing="10">
-        <Label text="Bread:"/>
-        <ComboBox fx:id="breadCombo"/>
+    <Label text="Build Your Sandwich"
+           styleClass="section-title"/>
 
-        <Label text="Protein:"/>
-        <ComboBox fx:id="proteinCombo"/>
+    <VBox spacing="8">
+        <Label text="Bread"/>
+        <ComboBox fx:id="breadCombo"
+                  prefWidth="280"/>
+    </VBox>
 
-        <Label text="Add-ons:"/>
+    <VBox spacing="8">
+        <Label text="Protein"/>
+        <ComboBox fx:id="proteinCombo"
+                  prefWidth="280"/>
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="Add-ons"/>
         <ListView fx:id="addOnsList"
-                  prefHeight="120"
-                  prefWidth="220"/>
+                  prefHeight="150"
+                  prefWidth="280"/>
+    </VBox>
 
-        <Label text="Qty:"/>
-        <Spinner fx:id="qtySpinner" prefWidth="80"/>
+    <VBox spacing="8">
+        <Label text="Quantity"/>
+        <Spinner fx:id="qtySpinner"
+                 prefWidth="140"
+                 minWidth="140"
+                 editable="true"/>
+    </VBox>
 
-        <Button text="Add to Order"
-                onAction="#handleAdd"/>
-    </HBox>
+    <HBox spacing="10"
+          alignment="CENTER_LEFT">
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Price:"/>
+        <Label text="Price:"
+               styleClass="price-label"/>
+
         <Label fx:id="priceLabel"
                styleClass="price"
-               text="\$0.00"/>
+               text="0.00"/>
+
     </HBox>
+
+    <Button text="Add to Order"
+            onAction="#handleAdd"
+            maxWidth="Infinity"
+            styleClass="primary-button"/>
 
 </VBox>

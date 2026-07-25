@@ -1,51 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.MainController"
-            stylesheets="@/css/app.css">
+            stylesheets="@/css/app.css"
+            styleClass="main-background">
 
     <top>
-        <ToolBar>
-            <Label text="RU Cafe"
-                   styleClass="header"/>
+        <VBox spacing="8"
+              styleClass="top-section">
 
-            <Pane HBox.hgrow="ALWAYS"/>
+            <HBox alignment="CENTER"
+                  spacing="20"
+                  styleClass="title-area">
 
-            <Button text="Placed Orders"
-                    onAction="#openPlacedOrders"/>
-        </ToolBar>
+                <VBox alignment="CENTER"
+                      HBox.hgrow="ALWAYS">
+
+                    <Label text="RU Cafe"
+                           styleClass="cafe-title"/>
+
+                    <Label text="♡  Sip. Savor. Enjoy.  ♡"
+                           styleClass="cafe-subtitle"/>
+
+                </VBox>
+
+                <Button text="Placed Orders"
+                        onAction="#openPlacedOrders"
+                        styleClass="placed-orders-button"/>
+
+            </HBox>
+        </VBox>
     </top>
 
     <center>
-        <TabPane fx:id="tabPane"
-                 tabClosingPolicy="UNAVAILABLE">
+        <HBox spacing="16"
+              alignment="CENTER">
 
-            <tabs>
-                <Tab text="Donuts" closable="false">
-                    <fx:include source="donut.fxml"/>
-                </Tab>
+            <padding>
+                <Insets top="10"
+                        right="16"
+                        bottom="10"
+                        left="16"/>
+            </padding>
 
-                <Tab text="Coffee" closable="false">
-                    <fx:include source="coffee.fxml"/>
-                </Tab>
+            <!-- Product tabs -->
+            <TabPane fx:id="tabPane"
+                     tabClosingPolicy="UNAVAILABLE"
+                     prefWidth="560"
+                     minWidth="500"
+                     HBox.hgrow="ALWAYS"
+                     styleClass="main-tab-pane">
 
-                <Tab text="Sandwich" closable="false">
-                    <fx:include source="sandwich.fxml"/>
-                </Tab>
+                <tabs>
+                    <Tab text="Donuts"
+                         closable="false">
+                        <fx:include source="donut.fxml"/>
+                    </Tab>
 
-                <Tab fx:id="currentOrderTab"
-                     text="Current Order"
-                     closable="false">
+                    <Tab text="Coffee"
+                         closable="false">
+                        <fx:include source="coffee.fxml"/>
+                    </Tab>
 
-                    <fx:include fx:id="currentOrder"
-                                source="current_order.fxml"/>
-                </Tab>
-            </tabs>
-        </TabPane>
+                    <Tab text="Sandwiches"
+                         closable="false">
+                        <fx:include source="sandwich.fxml"/>
+                    </Tab>
+                </tabs>
+
+            </TabPane>
+
+            <!-- Butterfly remains visible on every tab -->
+            <StackPane prefWidth="320"
+                       minWidth="260"
+                       maxWidth="360"
+                       alignment="CENTER"
+                       styleClass="butterfly-panel">
+
+                <ImageView fitWidth="290"
+                           fitHeight="430"
+                           preserveRatio="true">
+
+                    <image>
+                        <Image url="@img/retro.png"/>
+                    </image>
+
+                </ImageView>
+
+            </StackPane>
+
+            <!-- Current order always visible -->
+            <VBox prefWidth="390"
+                  minWidth="360"
+                  maxWidth="430"
+                  spacing="10"
+                  styleClass="order-side-panel">
+
+                <Label text="Current Order"
+                       styleClass="section-title"/>
+
+                <fx:include fx:id="currentOrder"
+                            source="current_order.fxml"
+                            VBox.vgrow="ALWAYS"/>
+
+            </VBox>
+
+        </HBox>
     </center>
+
+    <bottom>
+        <Label text="♡  ─────────────  made with love  ─────────────  ♡"
+               maxWidth="Infinity"
+               alignment="CENTER"
+               styleClass="love-footer"/>
+    </bottom>
 
 </BorderPane>

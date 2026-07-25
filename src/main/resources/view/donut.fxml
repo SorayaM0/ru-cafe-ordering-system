@@ -2,37 +2,85 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10"
-      xmlns="http://javafx.com/javafx/22.0.2"
+<HBox spacing="20"
+      alignment="CENTER"
+      xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="controller.DonutController"
       stylesheets="@/css/app.css">
 
     <padding>
-        <Insets top="15" right="15" bottom="15" left="15"/>
+        <Insets top="20"
+                right="20"
+                bottom="20"
+                left="20"/>
     </padding>
 
-    <HBox spacing="10">
-        <Label text="Type:"/>
-        <ComboBox fx:id="typeCombo"/>
-        <Label text="Flavor:"/>
-        <ComboBox fx:id="flavorCombo" prefWidth="220"/>
-        <Label text="Qty:"/>
-        <Spinner fx:id="qtySpinner" prefWidth="80"/>
-        <Button text="Add to Order" onAction="#handleAdd"/>
-    </HBox>
+    <VBox spacing="16"
+          prefWidth="360"
+          styleClass="menu-panel">
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <ImageView fx:id="donutImage"
-                   fitWidth="160"
-                   preserveRatio="true"/>
-        <Label text="Price:"/>
-        <Label fx:id="priceLabel"
-               styleClass="price"
-               text="\$0.00"/>
-    </HBox>
+        <Label text="Select Donut"
+               styleClass="section-title"/>
 
-</VBox>
+        <VBox spacing="8">
+            <Label text="Type"/>
+            <ComboBox fx:id="typeCombo"
+                      prefWidth="300"/>
+        </VBox>
+
+        <VBox spacing="8">
+            <Label text="Flavor"/>
+            <ComboBox fx:id="flavorCombo"
+                      prefWidth="300"/>
+        </VBox>
+
+        <VBox spacing="8">
+            <Label text="Quantity"/>
+            <Spinner fx:id="qtySpinner"
+                     prefWidth="120"/>
+        </VBox>
+
+        <HBox spacing="10"
+              alignment="CENTER_LEFT">
+
+            <Label text="Price:"
+                   styleClass="price-label"/>
+
+          <Label fx:id="priceLabel"
+       styleClass="price"
+       text="0.00"/>
+
+        </HBox>
+
+        <Button text="Add to Order"
+                onAction="#handleAdd"
+                maxWidth="Infinity"
+                styleClass="primary-button"/>
+
+    </VBox>
+
+    <StackPane prefWidth="500"
+               prefHeight="470"
+               alignment="CENTER"
+               styleClass="image-panel">
+
+        <VBox spacing="12"
+              alignment="CENTER">
+
+            <ImageView fx:id="donutImage"
+                       fitWidth="240"
+                       fitHeight="240"
+                       preserveRatio="true"/>
+
+            <Label text="Choose your favorite donut"
+                   styleClass="image-caption"/>
+
+        </VBox>
+
+    </StackPane>
+
+</HBox>

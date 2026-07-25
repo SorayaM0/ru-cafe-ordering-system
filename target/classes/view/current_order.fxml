@@ -4,38 +4,78 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10"
+<VBox spacing="12"
       xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="controller.CurrentOrderController"
-      stylesheets="@/css/app.css">
+      styleClass="embedded-order">
 
     <padding>
-        <Insets top="15" right="15" bottom="15" left="15"/>
+        <Insets top="10"
+                right="10"
+                bottom="10"
+                left="10"/>
     </padding>
 
-    <TableView fx:id="itemsTable" prefHeight="400">
+    <TableView fx:id="itemsTable"
+               prefHeight="360"
+               VBox.vgrow="ALWAYS">
+
         <columns>
-            <TableColumn fx:id="descCol" text="Item" prefWidth="500"/>
-            <TableColumn fx:id="priceCol" text="Price" prefWidth="120"/>
+            <TableColumn fx:id="descCol"
+                         text="Item"
+                         prefWidth="230"/>
+
+            <TableColumn fx:id="priceCol"
+                         text="Price"
+                         prefWidth="95"/>
         </columns>
     </TableView>
 
-    <HBox spacing="20">
-        <Label text="Subtotal:"/>
-        <Label fx:id="subtotalLabel" text="\$0.00"/>
+    <HBox spacing="10">
+        <Button text="Remove Selected"
+                onAction="#handleRemove"
+                HBox.hgrow="ALWAYS"
+                maxWidth="Infinity"/>
 
-        <Label text="Tax:"/>
-        <Label fx:id="taxLabel" text="\$0.00"/>
-
-        <Label text="Total:"/>
-        <Label fx:id="totalLabel" text="\$0.00"/>
-
-        <Pane HBox.hgrow="ALWAYS"/>
-
-        <Button text="Remove Selected" onAction="#handleRemove"/>
-        <Button text="Place Order" onAction="#handlePlace"/>
-        <Button text="Clear" onAction="#handleClear"/>
+        <Button text="Clear"
+                onAction="#handleClear"
+                HBox.hgrow="ALWAYS"
+                maxWidth="Infinity"/>
     </HBox>
+
+    <VBox spacing="9"
+          styleClass="totals-box">
+
+        <HBox>
+            <Label text="Subtotal:"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="subtotalLabel"
+                   text="\$0.00"/>
+        </HBox>
+
+        <HBox>
+            <Label text="Tax:"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="taxLabel"
+                   text="\$0.00"/>
+        </HBox>
+
+        <HBox>
+            <Label text="Total:"
+                   styleClass="total-heading"/>
+
+            <Pane HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="totalLabel"
+                   text="\$0.00"
+                   styleClass="total-price"/>
+        </HBox>
+    </VBox>
+
+    <Button text="Place Order"
+            onAction="#handlePlace"
+            maxWidth="Infinity"
+            styleClass="primary-button"/>
 
 </VBox>
