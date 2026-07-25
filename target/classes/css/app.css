@@ -1,0 +1,22 @@
+.root {
+    -fx-font-family: 'Inter', 'Segoe UI', sans-serif;
+    -fx-background-color: #ffe6f2;
+}
+
+.header {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #b30059;
+}
+
+.price {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #b30059;
+}
+
+.button {
+    -fx-background-color: #ff99cc;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}

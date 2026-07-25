@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.CoffeeController"
+      stylesheets="@/css/app.css">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <HBox spacing="20" alignment="CENTER_LEFT">
+
+        <VBox spacing="10">
+            <HBox spacing="10">
+                <Label text="Cup Size:"/>
+                <ComboBox fx:id="sizeCombo"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Add-ins:"/>
+                <ListView fx:id="addInsList"
+                          prefHeight="120"
+                          prefWidth="200"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Qty:"/>
+                <Spinner fx:id="qtySpinner"
+                         prefWidth="80"/>
+            </HBox>
+
+            <Button text="Add to Order"
+                    onAction="#handleAdd"/>
+        </VBox>
+
+        <ImageView fx:id="coffeeImage"
+                   fitWidth="220"
+                   fitHeight="220"
+                   preserveRatio="true"/>
+
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Price:"/>
+        <Label fx:id="priceLabel"
+               styleClass="price"
+               text="\$0.00"/>
+    </HBox>
+
+</VBox>

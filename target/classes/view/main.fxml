@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.MainController"
+            stylesheets="@/css/app.css">
+
+    <top>
+        <ToolBar>
+            <Label text="RU Cafe"
+                   styleClass="header"/>
+
+            <Pane HBox.hgrow="ALWAYS"/>
+
+            <Button text="Placed Orders"
+                    onAction="#openPlacedOrders"/>
+        </ToolBar>
+    </top>
+
+    <center>
+        <TabPane fx:id="tabPane"
+                 tabClosingPolicy="UNAVAILABLE">
+
+            <tabs>
+                <Tab text="Donuts" closable="false">
+                    <fx:include source="donut.fxml"/>
+                </Tab>
+
+                <Tab text="Coffee" closable="false">
+                    <fx:include source="coffee.fxml"/>
+                </Tab>
+
+                <Tab text="Sandwich" closable="false">
+                    <fx:include source="sandwich.fxml"/>
+                </Tab>
+
+                <Tab fx:id="currentOrderTab"
+                     text="Current Order"
+                     closable="false">
+
+                    <fx:include fx:id="currentOrder"
+                                source="current_order.fxml"/>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+
+</BorderPane>

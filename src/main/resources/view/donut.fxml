@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10"
+      xmlns="http://javafx.com/javafx/22.0.2"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.DonutController"
+      stylesheets="@/css/app.css">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <HBox spacing="10">
+        <Label text="Type:"/>
+        <ComboBox fx:id="typeCombo"/>
+        <Label text="Flavor:"/>
+        <ComboBox fx:id="flavorCombo" prefWidth="220"/>
+        <Label text="Qty:"/>
+        <Spinner fx:id="qtySpinner" prefWidth="80"/>
+        <Button text="Add to Order" onAction="#handleAdd"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <ImageView fx:id="donutImage"
+                   fitWidth="160"
+                   preserveRatio="true"/>
+        <Label text="Price:"/>
+        <Label fx:id="priceLabel"
+               styleClass="price"
+               text="\$0.00"/>
+    </HBox>
+
+</VBox>
