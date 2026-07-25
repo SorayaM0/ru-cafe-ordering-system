@@ -1,101 +1,42 @@
-# ☕ RU Cafe Ordering System
+# RU Cafe Ordering System
 
-A desktop café ordering application built with **Java**, **JavaFX**, and **Maven**. This application allows users to customize menu items, manage a current order, place orders, and review completed orders through an interactive graphical user interface.
+A desktop café ordering application developed in Java using JavaFX and Maven. The application allows users to customize menu items, manage a current order, place orders, and review completed orders through a graphical user interface.
 
----
+## Features
 
-## 📌 Features
+- Order donuts, coffee, and sandwiches
+- Customize coffee size and add-ins
+- Customize sandwiches with bread, protein, and toppings
+- View and manage the current order
+- Automatic subtotal, tax, and total calculation
+- Place and cancel orders
+- Export all placed orders to a text file
+- Dynamic images for selected donuts and coffee sizes
 
-### 🍩 Donut Ordering
-- Choose from multiple donut types:
-  - Yeast
-  - Cake
-  - Donut Hole
-  - Seasonal
-- Select quantity
-- Dynamic donut image updates based on the selected donut type
-
-### ☕ Coffee Ordering
-- Select cup size:
-  - Short
-  - Tall
-  - Grande
-  - Venti
-- Add multiple add-ins
-- Select quantity
-- Dynamic coffee image updates based on the selected cup size
-
-### 🥪 Sandwich Ordering
-- Choose bread type
-- Select protein
-- Add optional toppings
-- Select quantity
-
-### 🛒 Current Order
-- View all selected items
-- Remove individual items
-- Clear the entire order
-- Automatically calculates:
-  - Subtotal
-  - Sales Tax
-  - Total Price
-
-### 📋 Placed Orders
-- Place completed orders
-- View all placed orders
-- Cancel existing orders
-- Export all orders to a text file
-
----
-
-## 🖼️ User Interface
-
-The application was developed using **JavaFX** and includes:
-
-- Multiple tabs for different menu categories
-- Responsive user interface
-- Dynamic food and beverage images
-- Interactive order management
-- Styled using CSS
-
----
-
-## 🛠️ Technologies Used
+## Technologies
 
 - Java 21
 - JavaFX
 - Maven
 - FXML
 - CSS
-- Object-Oriented Programming (OOP)
 
----
+## Project Structure
 
-## 📂 Project Structure
-
-```
-Project4
-│
-├── src
-│   └── main
-│       ├── java
-│       │   ├── Project4
-│       │   ├── controller
-│       │   └── model
-│       │
-│       └── resources
-│           ├── css
-│           ├── view
-│           └── view/img
-│
-├── pom.xml
-├── README.md
-└── module-info.java
+```text
+src/
+├── main/
+│   ├── java/
+│   │   ├── Project4
+│   │   ├── controller
+│   │   └── model
+│   └── resources/
+│       ├── css/
+│       ├── view/
+│       └── view/img/
 ```
 
----
-
-## ▶️ Running the Application
+## Running the Application
 
 Clone the repository:
 
@@ -103,68 +44,20 @@ Clone the repository:
 git clone https://github.com/SorayaM0/ru-cafe-ordering-system.git
 ```
 
-Navigate into the project:
+Navigate to the project folder:
 
 ```bash
 cd ru-cafe-ordering-system
 ```
 
-Run the application using Maven:
+Run the application:
 
 ```bash
 mvn clean javafx:run
 ```
 
----
-
-## 📸 Screenshots
-
-You can add screenshots here after uploading them to your repository.
-
-### Home Screen
-
-![Home](screenshots/home.png)
-
-### Donut Ordering
-
-![Donuts](screenshots/donuts.png)
-
-### Coffee Ordering
-
-![Coffee](screenshots/coffee.png)
-
-### Current Order
-
-![Current Order](screenshots/current-order.png)
-
-### Placed Orders
-
-![Placed Orders](screenshots/placed-orders.png)
-
----
-
-## 🎯 Learning Objectives
-
-This project demonstrates:
-
-- JavaFX GUI development
-- Event-driven programming
-- MVC (Model-View-Controller) architecture
-- Object-oriented design principles
-- File input/output
-- Collections and data management
-- Maven project configuration
-
----
-
-## 👩‍💻 Author
+## Author
 
 **Soraya M.**
 
 GitHub: https://github.com/SorayaM0
-
----
-
-## 📄 License
-
-This project was developed for educational purposes as part of the Rutgers University Software Methodology course.
